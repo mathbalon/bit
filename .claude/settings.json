@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /home/matheuslira/bit && uv run ruff check . 2>/dev/null || true",
+            "statusMessage": "Checking with ruff..."
+          },
+          {
+            "type": "command",
+            "command": "cd /home/matheuslira/bit && uv run ruff format . 2>/dev/null || true",
+            "statusMessage": "Formatting with ruff..."
+          },
+          {
+            "type": "command",
+            "command": "cd /home/matheuslira/bit && uv run ty check 2>/dev/null || true",
+            "statusMessage": "Type checking with ty..."
+          }
+        ]
+      }
+    ]
+  }
+}

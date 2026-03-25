@@ -1,0 +1,6 @@
+{
+  "name": "manage-docs",
+  "description": "Guia para atualizar documentacao do projeto quando o codigo muda",
+  "version": "1.0",
+  "skill": "SKILL.md"
+}

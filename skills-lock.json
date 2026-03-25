@@ -1,10 +1,25 @@
 {
   "version": 1,
   "skills": {
+    "ascii-image-to-ascii": {
+      "source": "partme-ai/full-stack-skills",
+      "sourceType": "github",
+      "computedHash": "390ec4ed93ca3c739bf23bf16b3d75eaf7d0c2a5ab0945903660cdbd515cc039"
+    },
     "conventional-commit": {
       "source": "local",
       "sourceType": "local",
       "computedHash": "f29c9486cede6c7b2df0cfb0a2e4aa67446552b991bcf17d1b309e903171f03d"
+    },
+    "find-skills": {
+      "source": "local",
+      "sourceType": "local",
+      "computedHash": "d31e234f0c90694a670222cdd1dafa853e051d7066beda389f1097c22dadd461"
+    },
+    "manage-docs": {
+      "source": "local",
+      "sourceType": "local",
+      "computedHash": "f871f1aa8a3825858f5d9de43b64fce99970d930afb89f48569e9d4058c704a7"
     }
   }
 }

@@ -20,9 +20,9 @@ uv sync
 uv run bit hello --name "Fulano"
 # Hello, Fulano!
 
-# Personagem animado interativo (curses)
+# Personagem animado interativo (Textual TUI)
 uv run bit char
-# Controles: [A] Idle  [S] Sleeping  [D] Working  [Q] Sair
+# Comandos: /idle, /sleep, /work, /quit
 ```
 
 ## Estrutura do Projeto
@@ -32,8 +32,9 @@ bit/
 ├── bit/
 │   ├── __init__.py              # Package marker
 │   ├── main.py                  # Entry point CLI (Typer)
-│   ├── character.py             # Engine de animacao curses
-│   └── character_frames.py      # Frames ASCII (idle, sleeping, working)
+│   ├── character.py             # TUI Textual app com widgets e animacao
+│   ├── character_frames.py      # Loader de frames (carrega de YAML)
+│   └── frames.yaml              # Frames ASCII (idle, sleeping, working)
 ├── pyproject.toml               # Metadata e dependencias
 ├── C4_ARCHITECTURE.md           # Diagramas de arquitetura C4
 ├── CLAUDE.md                    # Instrucoes para Claude Code

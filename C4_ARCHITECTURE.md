@@ -64,8 +64,10 @@ graph TB
         ArgParser["📝 Argument Parser<br/>(Click/Typer)"]
         CommandRouter["🔀 Command Router<br/>(dispatch)"]
         HelloCommand["👋 Hello Command<br/>(hello --name)"]
-        CharCommand["🎮 Char Command<br/>(animacao interativa)"]
-        CharEngine["🖼️ Character Engine<br/>(curses + frames)"]
+        CharCommand["🎮 Char Command<br/>(inicia TUI)"]
+        TUI["🖼️ Textual TUI App<br/>(CharacterApp + Widgets)"]
+        CharDisplay["🎬 CharacterDisplay<br/>(renderiza frames)"]
+        MessageDisplay["💬 MessageDisplay<br/>(feedback usuario)"]
     end
 
     Terminal["💻 Terminal Output"]
@@ -75,8 +77,10 @@ graph TB
     CommandRouter -->|execute| HelloCommand
     CommandRouter -->|execute| CharCommand
     HelloCommand -->|echo| Terminal
-    CharCommand -->|usa| CharEngine
-    CharEngine -->|renderiza| Terminal
+    CharCommand -->|inicia| TUI
+    TUI -->|contem| CharDisplay
+    TUI -->|contem| MessageDisplay
+    TUI -->|renderiza| Terminal
 ```
 
 **Componentes:**
@@ -86,8 +90,10 @@ graph TB
 | **Argument Parser** | Extrai e valida argumentos de linha de comando |
 | **Command Router** | Roteia para handler apropriado baseado no comando |
 | **Hello Command** | Formata mensagem de saudacao e imprime |
-| **Char Command** | Inicia animacao interativa de personagem |
-| **Character Engine** | Renderiza frames ASCII com curses, gerencia estados (idle, sleeping, working) |
+| **Char Command** | Inicia aplicacao Textual TUI |
+| **Textual TUI App** | Aplicacao interativa com input e animacao |
+| **CharacterDisplay** | Widget que renderiza frames ASCII em loop |
+| **MessageDisplay** | Widget que mostra feedback e status |
 
 ---
 
@@ -112,10 +118,13 @@ bit char
   → Argument Parser: identifica "char"
   → Command Router: encontra handler char
   → Char Command: chama character()
-  → Character Engine (curses):
-      - Inicializa terminal curses
-      - Loop: le input (A/S/D/Q), seleciona frames, renderiza
-      - Q encerra e restaura terminal
+  → Textual App (CharacterApp):
+      - Monta layout (CharacterDisplay + MessageDisplay + Input)
+      - Timer de 0.3s atualiza frames de animacao
+      - Usuario digita ou usa comandos /idle, /sleep, /work, /quit
+      - CharacterDisplay renderiza frame atual alinhado ao bottom-left
+      - MessageDisplay mostra feedback e status
+      - /quit encerra app e restaura terminal
 ```
 
 ---
@@ -125,8 +134,9 @@ bit char
 | Modulo | Responsabilidade |
 |--------|-----------------|
 | `bit/main.py` | Entry point CLI, define comandos hello e char |
-| `bit/character.py` | Engine de animacao: curses, estados, loop de render |
-| `bit/character_frames.py` | Dados: frames ASCII para idle, sleeping, working |
+| `bit/character.py` | Textual TUI app: CharacterApp, CharacterDisplay, MessageDisplay widgets |
+| `bit/character_frames.py` | Loader de frames: carrega ASCII de frames.yaml |
+| `bit/frames.yaml` | Dados: frames ASCII para idle, sleeping, working (formato YAML) |
 
 ---
 
@@ -136,7 +146,9 @@ bit char
 |--------|-----------|----------|
 | **Framework CLI** | Typer 0.24.1+ | Definição e execução de comandos |
 | **Parsing** | Click (via Typer) | Parsing de argumentos CLI |
-| **Output** | typer.echo / curses | Saida formatada e animacao terminal |
+| **TUI Framework** | Textual 8.1.1+ | Interface interativa, widgets, layout, animacao |
+| **Data Format** | PyYAML 6.0.3+ | Carregamento de frames ASCII de arquivo YAML |
+| **Output** | Textual | Saida formatada e animacao terminal |
 | **Language** | Python 3.14+ | Runtime |
 | **Build** | Hatchling | Build system |
 
@@ -172,19 +184,23 @@ Novos comandos seguem o mesmo padrao: funcao com `@app.command()` em `main.py`, 
 ```mermaid
 graph LR
     Main["bit.main<br/>(CLI entry)"]
-    Character["bit.character<br/>(animacao)"]
-    Frames["bit.character_frames<br/>(dados ASCII)"]
-    Typer["Typer 0.24.1+<br/>(Framework)"]
-    Curses["curses<br/>(stdlib)"]
+    Character["bit.character<br/>(TUI Textual)"]
+    Frames["bit.character_frames<br/>(loader YAML)"]
+    FramesFile["frames.yaml<br/>(dados ASCII)"]
+    Typer["Typer 0.24.1+<br/>(CLI Framework)"]
+    Textual["Textual 8.1.1+<br/>(TUI Framework)"]
+    PyYAML["PyYAML 6.0.3+<br/>(YAML parser)"]
     Click["Click<br/>(parser)"]
     Python["Python 3.14+<br/>(runtime)"]
 
     Main -->|imports| Typer
     Main -->|imports| Character
     Character -->|imports| Frames
-    Character -->|imports| Curses
+    Character -->|imports| Textual
+    Frames -->|reads| FramesFile
+    Frames -->|imports| PyYAML
     Typer -->|uses| Click
-    Typer & Click & Main -->|run on| Python
+    Typer & Textual & PyYAML & Main -->|run on| Python
 ```
 
 ---

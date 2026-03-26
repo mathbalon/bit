@@ -1,0 +1,97 @@
+# █ (U+2588) - Full Block
+# ■ (U+25A0) - Black Square
+# ▪ (U+25AA) - Black Small Square
+
+# ▀ (U+2580) - Upper Half Block
+# ▄ (U+2584) - Lower Half Block
+# ▌ (U+258C) - Left Half Block
+# ▐ (U+2590) - Right Half Block
+
+# ▘ (U+2598) - Quadrant Upper Left
+# ▝ (U+259D) - Quadrant Upper Right
+# ▖ (U+2596) - Quadrant Lower Left
+# ▗ (U+2597) - Quadrant Lower Right
+
+# ▚ (U+259A) - Quadrant Upper Left and Lower Right
+# ▞ (U+259E) - Quadrant Upper Right and Lower Left
+# ▙ (U+2599) - Quadrant Upper Left, Lower Left and Lower Right
+# ▛ (U+259B) - Quadrant Upper Left, Upper Right and Lower Left
+# ▜ (U+259C) - Quadrant Upper Left, Upper Right and Lower Right
+# ▟ (U+259F) - Quadrant Upper Right, Lower Left and Lower Right
+
+frames:
+  idle:
+    - |
+      ▗
+        ██
+          ████████
+          ██████████
+          █████ █ ██
+          █████ █ ██
+       ██ ██████████ ██
+          ██████████
+      ____██______██___
+    - |
+      ▗
+        ██
+          ████████
+       ██ ██████████ ██
+          █████ █ ██
+          █████ █ ██
+          ██████████ 
+          ██████████
+          ▀▀      ▀▀
+      _________________    
+  sleeping:
+    - |
+      zzZz    █████████████
+      z    ██████▄██████████▟
+        z  ██████▄██████████▟
+      ▄_██_████████████████___
+    - |
+      ZzzZ    █████████████
+        z  ██████▄██████████▟
+       z   ██████▄██████████▟
+      ▄_██_████████████████___
+  working:
+    - |
+      ▗   * *  x + *
+        ██  * x  *  - +
+       *  ████████ +  *
+      * x ██████████   \/
+      - * █████ █ ██ ██ ○◦
+       + -█████ █ ██   ○ •○
+      * x ██████████ ██◦○
+       *  ██████████   /\
+      ____██______██______
+    - |
+      ▗   x x  * - x
+        ██  x *  x  + -
+       x  ████████ -  x
+      x * ██████████   \\
+      + x █████ █ ██ ██ ○○
+       - +█████ █ ██   °• ◦
+      x * ██████████ ██ ○○
+       x  ██████████   \\
+      ____██______██______
+    - |
+      ▗   + +  - * +
+        ██  + -  +  x *
+       +  ████████ *  +
+      + - ██████████   \/
+      x + █████ █ ██ ██ ◦◦
+       * x█████ █ ██   ○ •○
+      + - ██████████ ██ ◦◦
+       +  ██████████   /\
+      ____██______██______
+    - |
+      ▗   - -  + x -
+        ██  - +  -  * x
+       -  ████████ x  -
+      - + ██████████   //
+      * - █████ █ ██ ██ ○○
+       x *█████ █ ██   ◦• ◦
+      - + ██████████ ██ ◦ ○○
+       -  ██████████   \\
+      ____██______██______
+

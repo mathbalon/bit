@@ -1,11 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "ascii-image-to-ascii": {
-      "source": "partme-ai/full-stack-skills",
-      "sourceType": "github",
-      "computedHash": "390ec4ed93ca3c739bf23bf16b3d75eaf7d0c2a5ab0945903660cdbd515cc039"
-    },
     "conventional-commit": {
       "source": "local",
       "sourceType": "local",
